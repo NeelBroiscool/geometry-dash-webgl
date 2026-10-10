@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neon Dash</title>
+    <style>
+      :root {
+        --bg-dark: #070b14;
+        --bg-mid: #111a2d;
+        --panel: rgba(15, 20, 30, 0.8);
+        --cyan: #66f0ff;
+        --blue: #4d8bff;
+        --pink: #ff4ec9;
+        --yellow: #ffd166;
+        --red: #ff4d6d;
+        --white: #ecf8ff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html, body {
+        margin: 0;
+        height: 100%;
+        background: var(--bg-dark);
+        font-family: Arial, Helvetica, sans-serif;
+        overflow: hidden;
+      }
+
+      .launcher-body {
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(circle at 20% 20%, rgba(77, 139, 255, 0.15), transparent 25%),
+          radial-gradient(circle at 75% 30%, rgba(255, 78, 201, 0.12), transparent 20%),
+          linear-gradient(180deg, #060a12, #0a1220);
+      }
+
+      .menu {
+        text-align: center;
+        padding: 32px 48px;
+        border: 2px solid rgba(102, 240, 255, 0.3);
+        border-radius: 18px;
+        background: rgba(11, 18, 30, 0.7);
+        box-shadow: 0 0 30px rgba(77, 139, 255, 0.25);
+      }
+
+      .logo {
+        font-weight: 900;
+        letter-spacing: 0.25em;
+        font-size: clamp(28px, 4vw, 56px);
+        color: var(--white);
+        text-shadow: 0 0 22px rgba(102, 240, 255, 0.7);
+        margin-bottom: 24px;
+      }
+
+      #launchBtn {
+        border: none;
+        outline: none;
+        padding: 16px 30px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--cyan), var(--blue));
+        color: #061119;
+        cursor: pointer;
+        box-shadow: 0 0 25px rgba(102, 240, 255, 0.35);
+        transition: all 0.3s ease;
+      }
+
+      #launchBtn:hover {
+        filter: brightness(1.1);
+        transform: scale(1.05);
+      }
+
+      #launchBtn:active {
+        transform: scale(0.98);
+      }
+
+      .stats {
+        margin-top: 32px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(102, 240, 255, 0.2);
+        color: rgba(236, 248, 255, 0.7);
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body class="launcher-body">
+    <div class="menu">
+      <div class="logo">NEON DASH</div>
+      <button id="launchBtn">Launch Game Window</button>
+      <div class="stats">
+        <p id="bestScore">Best Score: 0</p>
+      </div>
+    </div>
+
+    <script>
+      // Load best score from localStorage
+      const bestScoreEl = document.getElementById('bestScore');
+      const best = Number(localStorage.getItem('neonDashBest') || 0);
+      bestScoreEl.textContent = `Best Score: ${best}`;
+
+      document.getElementById('launchBtn').addEventListener('click', () => {
+        window.open(
+          'popup.html',
+          'neon-dash-window',
+          'width=980,height=560,resizable=no,scrollbars=no'
+        );
+      });
+    </script>
+  </body>
+</html>
